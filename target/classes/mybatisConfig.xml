@@ -15,6 +15,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="sql/test/BlogMapper.xml"/>
+    <mapper resource="sql/test/Mapper.xml"/>
   </mappers>
 </configuration>
