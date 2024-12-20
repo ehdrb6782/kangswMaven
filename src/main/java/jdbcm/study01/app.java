@@ -1,5 +1,7 @@
 package jdbcm.study01;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,19 +9,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class app {
 	Connection conn;
 	public static void main(String[] args) {
 		
-		app myApp = new app();
-		myApp.conn();
-		myApp.getData();
-
-		Connection con= myApp.getConn();
-		List<user> usr = new ArrayList<user>();
-		if(con != null) {
-			usr = myApp.data(con);
+		String resource = "mybatisConfig.xml";
+		try {
+			InputStream inputStream;
+			inputStream = Resources.getResourceAsStream(resource);
+			SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+//		app myApp = new app();
+//		myApp.conn();
+//		myApp.getData();
+//
+//		Connection con= myApp.getConn();
+//		List<user> usr = new ArrayList<user>();
+//		if(con != null) {
+//			usr = myApp.data(con);
+//		}
 	}
 	
  public void conn() {
